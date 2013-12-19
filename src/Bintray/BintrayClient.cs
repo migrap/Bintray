@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Bintray.Diagnostics.Contracts;
+using System.IO;
 
 namespace Bintray {
     public class BintrayClient {
@@ -50,11 +51,17 @@ namespace Bintray {
                 .ReadAsAsync<Package>(_formatter);
         }
 
-        public Task<Models.Version> GetVersionAsync(string subject = (string)null, string repo = (string)null, string package = (string)null, string version = (string)null) {
+        public Task<Models.Version> GetVersionAsync(string subject = (string)null, string repo = (string)null, string package = (string)null, string version = (string)"_latest") {
             new { subject, repo, package, version }.CheckNotNull();
 
             return _client.SendAsync(HttpMethod.Get, "/packages/{0}/{1}/{2}/versions/{3}", subject, repo, package, version)
                 .ReadAsAsync<Models.Version>(_formatter);
+        }
+
+        //curl -L -o <FILE.EXT> "http://dl.bintray.com/migrap/generic/<FILE_TARGET_PATH>"
+        public Task<Stream> DownloadAsync(string subject = (string)null, string repo = (string)null, string file = (string)null) {
+            return _client.SendAsync(HttpMethod.Get, "http://dl.bintray.com/migrap/generic/{0}", file)
+                .ReadAsStreamAsync();
         }
     }
 }

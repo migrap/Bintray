@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Reflection;
+using System.IO;
 
 namespace Bintray {
     public static partial class Extensions {
@@ -29,6 +30,17 @@ namespace Bintray {
             response.EnsureSuccessStatusCode();
 
             return response.Content.ReadAsStringAsync();
+        }
+
+        internal static Task<Stream> ReadAsStreamAsync(this Task<HttpResponseMessage> message) {
+            var response = message
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
+
+            response.EnsureSuccessStatusCode();
+
+            return response.Content.ReadAsStreamAsync();
         }
 
         internal static Task<T> ReadAsAsync<T>(this HttpResponseMessage message, MediaTypeFormatter formatter) {
