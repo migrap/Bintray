@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Bintray</id>
+    <version>$version$</version>
+    <title>Bintray</title>
+    <authors>Michael Park</authors>
+    <owners>Michael Park</owners>
+    <licenseUrl>https://github.com/migrap/Bintray/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/migrap/Bintray</projectUrl>    
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>C# library for accessing Bintray REST API</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2014 Michael Park</copyright>
+    <tags></tags>
+  </metadata>
+</package>
