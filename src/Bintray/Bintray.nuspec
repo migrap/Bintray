@@ -12,6 +12,9 @@
     <description>C# library for accessing Bintray REST API</description>
     <releaseNotes></releaseNotes>
     <copyright>Copyright 2014 Michael Park</copyright>
-    <tags></tags>
+    <tags>Bintray</tags>
   </metadata>
+  <files>
+        <file src="bin\Release\**" target="lib\net45" />        
+    </files>
 </package>
